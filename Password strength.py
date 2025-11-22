@@ -16,8 +16,10 @@ class PasswordStrengthChecker:
         self.setup_ui()
     
     def load_common_passwords(self):
+        
         # A small list of common passwords for demonstration
         # In a real application, you would load from a file
+        
         return {
             "password", "123456", "12345678", "1234", "qwerty", "12345", 
             "dragon", "baseball", "football", "letmein", "monkey", "abc123",
@@ -32,11 +34,13 @@ class PasswordStrengthChecker:
         main_frame.pack(fill=tk.BOTH, expand=True)
         
         # Title
+        
         title_label = ttk.Label(main_frame, text="Password Strength Checker", 
                                font=("Arial", 18, "bold"))
         title_label.pack(pady=(0, 20))
         
         # Description
+        
         desc_label = ttk.Label(main_frame, 
                               text="Enter a password to check its strength. A strong password should:\n"
                                    "- Be at least 8 characters long\n"
@@ -299,4 +303,5 @@ class PasswordStrengthChecker:
 if __name__ == "__main__":
     root = tk.Tk()
     app = PasswordStrengthChecker(root)
+
     root.mainloop()
