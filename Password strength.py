@@ -101,6 +101,7 @@ class PasswordStrengthChecker:
         scrollbar.pack(side="right", fill="y")
         
         # Analysis labels
+        
         self.length_label = ttk.Label(self.scrollable_frame, text="Length: -")
         self.length_label.pack(anchor="w", pady=(0, 5))
         
@@ -123,6 +124,7 @@ class PasswordStrengthChecker:
         self.score_label.pack(anchor="w", pady=(0, 5))
         
         # Recommendations
+        
         self.recommendations_label = ttk.Label(self.scrollable_frame, text="Recommendations:", 
                                               font=("Arial", 10, "bold"))
         self.recommendations_label.pack(anchor="w", pady=(10, 5))
@@ -131,6 +133,7 @@ class PasswordStrengthChecker:
         self.recommendations_text.pack(fill=tk.X, pady=(0, 10))
         
         # Generate password button
+        
         generate_btn = ttk.Button(main_frame, text="Generate Strong Password", 
                                  command=self.generate_password)
         generate_btn.pack(pady=(10, 0))
@@ -147,8 +150,10 @@ class PasswordStrengthChecker:
         if not password:
             self.reset_display()
             return
+
         
         # Check criteria
+        
         length_ok = len(password) >= 8
         has_uppercase = bool(re.search(r'[A-Z]', password))
         has_lowercase = bool(re.search(r'[a-z]', password))
@@ -157,6 +162,7 @@ class PasswordStrengthChecker:
         is_common = password.lower() in self.common_passwords
         
         # Calculate score
+        
         score = 0
         max_score = 100
         
@@ -164,7 +170,7 @@ class PasswordStrengthChecker:
         length_score = min(len(password) * 2, 30)
         score += length_score
         
-        # Character variety (max 40 points)
+        # Character variety (max 40 points as clear)
         if has_uppercase:
             score += 10
         if has_lowercase:
@@ -203,6 +209,7 @@ class PasswordStrengthChecker:
         self.progress_bar.configure(style=f"Horizontal.TProgressbar.{color}")
         
         # Update analysis labels
+                          
         self.length_label.config(
             text=f"Length: {'✓ Good' if length_ok else '✗ Too short'}", 
             foreground="green" if length_ok else "red"
@@ -233,15 +240,16 @@ class PasswordStrengthChecker:
         )
         
         # Update recommendations
+                          
         recommendations = []
         if not length_ok:
             recommendations.append("• Use at least 8 characters")
         if not has_uppercase:
-            recommendations.append("• Include uppercase letters (A-Z)")
+            recommendations.append("• Include uppercase letters range (A-Z)")
         if not has_lowercase:
-            recommendations.append("• Include lowercase letters (a-z)")
+            recommendations.append("• Include lowercase letters range (a-z)")
         if not has_numbers:
-            recommendations.append("• Include numbers (0-9)")
+            recommendations.append("• Include numbers range (0-9)")
         if not has_symbols:
             recommendations.append("• Include symbols (!@#$%^&*, etc.)")
         if is_common:
@@ -305,3 +313,4 @@ if __name__ == "__main__":
     app = PasswordStrengthChecker(root)
 
     root.mainloop()
+
