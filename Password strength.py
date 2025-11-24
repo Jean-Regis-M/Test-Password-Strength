@@ -11,6 +11,7 @@ class PasswordStrengthChecker:
         self.root.resizable(False, False)
         
         # Load common passwords list
+        
         self.common_passwords = self.load_common_passwords()
         
         self.setup_ui()
@@ -29,12 +30,13 @@ class PasswordStrengthChecker:
         }
     
     def setup_ui(self):
+        
         # Main frame
         main_frame = ttk.Frame(self.root, padding="20")
         main_frame.pack(fill=tk.BOTH, expand=True)
         
         # Title
-        
+    
         title_label = ttk.Label(main_frame, text="Password Strength Checker", 
                                font=("Arial", 18, "bold"))
         title_label.pack(pady=(0, 20))
@@ -51,6 +53,7 @@ class PasswordStrengthChecker:
         desc_label.pack(pady=(0, 20))
         
         # Password entry
+        
         password_frame = ttk.Frame(main_frame)
         password_frame.pack(fill=tk.X, pady=(0, 10))
         
@@ -61,6 +64,7 @@ class PasswordStrengthChecker:
         self.password_entry.bind("<KeyRelease>", self.check_password_strength)
         
         # Show password checkbox
+        
         self.show_password_var = tk.BooleanVar()
         show_password_cb = ttk.Checkbutton(password_frame, text="Show password", 
                                           variable=self.show_password_var,
@@ -68,6 +72,7 @@ class PasswordStrengthChecker:
         show_password_cb.pack(side=tk.LEFT, padx=(20, 0))
         
         # Strength indicator
+        
         strength_frame = ttk.Frame(main_frame)
         strength_frame.pack(fill=tk.X, pady=(10, 5))
         
